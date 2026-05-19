@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'swift_property_wrapper_demo' in project 'swift_property_wrapper_demo' (no dependencies)

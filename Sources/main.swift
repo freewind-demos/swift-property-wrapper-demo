@@ -78,17 +78,25 @@ print("投影: \(counter.$count)")
 // ============ 身份证验证 ============
 @propertyWrapper
 struct Validated {
+    private var value: String = ""
     private var isValid: Bool = false
 
     var wrappedValue: String {
-        didSet {
-            isValid = validate(wrappedValue)
+        get { value }
+        set {
+            value = newValue
+            isValid = Self.validate(newValue)
         }
     }
 
     var projectedValue: Bool { isValid }
 
-    private func validate(_ id: String) -> Bool {
+    init(wrappedValue: String = "") {
+        self.value = wrappedValue
+        self.isValid = Self.validate(wrappedValue)
+    }
+
+    private static func validate(_ id: String) -> Bool {
         return id.count == 18
     }
 }
